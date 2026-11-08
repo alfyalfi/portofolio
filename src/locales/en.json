@@ -1,0 +1,39 @@
+{
+  "lang": "en",
+  "home_section": {
+    "button_text": "See Resume",
+    "role": "Creative & Marketer",
+    "location": "Based in Palembang"
+  },
+  "about_section": {
+    "title": "About me",
+    "paragraph": "i'm a creative marketer and ads specialist from palembang, combining data-driven paid traffic strategies with high-converting creative content."
+  },
+  "expertise_section": {
+    "title": "Expertise & Tools",
+    "cert_badge": "Official Credentials",
+    "cert_title": "Verified Certifications",
+    "cert_desc": "Official professional credentials in digital performance marketing, data analytics, and conversion optimization."
+  },
+  "works_section": {
+    "title": "Work experience",
+    "timeline_badge": "Career Timeline",
+    "see_work": "Let's Collaborate",
+    "next": "Next",
+    "up_next": "Up next",
+    "teaser": ["Proven journey.", "Ready to scale", "your company?"]
+  },
+  "quote_section": {
+    "quote": "creative gets the attention, data drives the conversion"
+  },
+  "cta_section": {
+    "first": ["No guesswork.", "Every campaign", "is data-backed"],
+    "second": ["Engaging creative,", "maximum", "conversion"]
+  },
+  "contact_section": {
+    "eyebrow": "Ready to scale your company?",
+    "title": "Let's work together",
+    "body": "Let's discuss advertising campaigns, company scaling, or just say hi.",
+    "subject": "Company Marketing Consultation"
+  }
+}

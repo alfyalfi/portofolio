@@ -1,0 +1,39 @@
+{
+  "lang": "id",
+  "home_section": {
+    "button_text": "Lihat Resume",
+    "role": "Creative & Marketer",
+    "location": "Berlokasi di Palembang"
+  },
+  "about_section": {
+    "title": "Tentang Saya",
+    "paragraph": "seorang creative marketer dan ads specialist dari palembang yang memadukan strategi performa iklan berbasis data dengan konten kreatif berkonversi tinggi."
+  },
+  "expertise_section": {
+    "title": "Keahlian & Tools",
+    "cert_badge": "Kredensial Resmi",
+    "cert_title": "Sertifikasi Terverifikasi",
+    "cert_desc": "Kredensial profesional resmi dalam performa iklan digital, data analytics, dan optimasi konversi."
+  },
+  "works_section": {
+    "title": "Pengalaman kerja",
+    "timeline_badge": "Timeline Karir",
+    "see_work": "Konsultasi Karir & Proyek",
+    "next": "Next",
+    "up_next": "Selanjutnya",
+    "teaser": ["Perjalanan karir.", "Siap kembangkan", "perusahaanmu?"]
+  },
+  "quote_section": {
+    "quote": "creative gets the attention, data drives the conversion"
+  },
+  "cta_section": {
+    "first": ["Bukan tebak-tebakan.", "Tiap kampanye", "berbasis data"],
+    "second": ["Kreatif menarik,", "konversi", "maksimal"]
+  },
+  "contact_section": {
+    "eyebrow": "Siap buat perusahaanmu naik level?",
+    "title": "Mari bekerja sama",
+    "body": "Diskusikan kampanye iklan, strategi scale up perusahaan Anda, atau sekadar menyapa.",
+    "subject": "Konsultasi Marketing Perusahaan"
+  }
+}
