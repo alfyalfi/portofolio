@@ -31,6 +31,7 @@ export default function AboutView({ lang }: AboutViewProps) {
       <h2 id="about-heading" className="sr-only">
         {lang.about_section.title}
       </h2>
+
       {/* Desktop Image. Measured from the top: the video's scroll comes after
           it and must not move it. */}
       <div className="hidden md:block w-[32vw] h-auto absolute top-[calc(150vh+10.5rem)] left-24 -translate-y-1/2 aspect-4/3 overflow-hidden rounded-xl border border-neutral-800 shadow-2xl">
@@ -59,38 +60,32 @@ export default function AboutView({ lang }: AboutViewProps) {
             {lang.about_section.paragraph}
           </p>
 
-          {/* Professional Career Journey */}
-          <div className="mt-10 md:mt-14 max-w-[56vw] max-md:max-w-full max-md:px-4">
-            <div className="flex items-center gap-2 mb-3.5">
-              <span className="size-2 rounded-full bg-sky-400 animate-pulse" />
-              <p className="text-xs uppercase tracking-widest font-mono text-sky-400 font-semibold">
-                {lang.about_section.timeline_title || "Perjalanan Profesional (2021 — 2026)"}
-              </p>
-            </div>
+          {/* Professional Career Journey - Pure Original Editorial Styling */}
+          <div className="mt-14 md:mt-20 max-w-[56vw] max-md:max-w-full max-md:px-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-6 font-medium">
+              {lang.about_section.timeline_title || "Perjalanan Profesional (2021 — 2026)"}
+            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+            <div className="border-t border-white/15 divide-y divide-white/10">
               {careerTimeline.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group relative rounded-xl border border-white/10 bg-neutral-950/70 p-4 backdrop-blur-md transition-all duration-300 hover:border-sky-400/40 hover:bg-neutral-900/80 shadow-lg"
+                  className="group py-5 flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-8 transition-colors"
                 >
-                  <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-white/5">
-                    <span className="text-[11px] font-mono font-bold text-sky-400 bg-sky-400/10 px-2 py-0.5 rounded-full border border-sky-400/20">
-                      {item.period}
-                    </span>
-                    <span className="text-[10px] font-mono text-neutral-400 uppercase">
-                      0{idx + 1}
-                    </span>
+                  <div className="text-sm font-medium tracking-tight text-white/40 group-hover:text-white transition-colors shrink-0 md:w-32">
+                    {item.period}
                   </div>
-                  <h3 className="text-sm font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">
-                    {item.role[locale]}
-                  </h3>
-                  <p className="text-xs font-semibold text-neutral-300 mt-1">
-                    {item.company[locale]}
-                  </p>
-                  <p className="text-[11px] text-neutral-400 mt-1.5 leading-relaxed">
-                    {item.summary[locale]}
-                  </p>
+                  <div className="flex-1">
+                    <h3 className="text-base md:text-lg font-medium tracking-tight text-white group-hover:text-white transition-colors">
+                      {item.role[locale]}
+                    </h3>
+                    <p className="text-sm text-white/60 mt-0.5">
+                      {item.company[locale]} • {item.category[locale]}
+                    </p>
+                    <p className="text-sm text-neutral-400 mt-1 leading-relaxed">
+                      {item.summary[locale]}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

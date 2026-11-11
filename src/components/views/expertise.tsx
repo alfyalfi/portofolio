@@ -39,7 +39,7 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
           const starPath = starPathRef.current;
           const media = gsap.matchMedia();
 
-          // The lime star next to the title draws its outline, fills in, then
+          // The star next to the title draws its outline, fills in, then
           // keeps spinning slowly (paused while off screen to save frames).
           media.add("(prefers-reduced-motion: no-preference)", () => {
             if (!star || !starPath) return;
@@ -107,7 +107,7 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
           });
 
           // Touch screens have no hover, so the item crossing the middle of the
-          // screen lights up lime instead (data-active), following the scroll.
+          // screen lights up instead (data-active), following the scroll.
           media.add("(hover: none)", () => {
             const items = gsap.utils.toArray<HTMLElement>(
               "[data-tech]",
@@ -146,7 +146,7 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
       {/* Same title treatment and spot as "Selected works" */}
       <h2 className="flex items-center gap-[0.2em] text-[14vw] tracking-tight md:text-[6vw]">
         {lang.expertise_section.title}
-        {/* Same four-point star as the hero's lime ✦ */}
+        {/* Four-point sparkle star ✦ */}
         <svg
           ref={starRef}
           viewBox="0 0 100 100"
@@ -164,7 +164,7 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
         </svg>
       </h2>
 
-      {/* Same dimmed white as the unfilled "Selected works" title; on mobile
+      {/* Same dimmed white as the unfilled title; on mobile
           the same size as the title too. Each "/" sits in the gap after its
           item. The last item of every line ends flush with the right edge, so
           its "/" falls outside the list and overflow-x-clip hides it: a "/"
@@ -181,7 +181,7 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
             <span className="relative inline-block">
               <span
                 data-tech
-                className="transition-colors duration-300 hover:text-sky-400 data-active:text-sky-400"
+                className="transition-colors duration-300 hover:text-white data-active:text-white"
               >
                 {name}
               </span>
@@ -196,25 +196,23 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
         ))}
       </ul>
 
-      {/* Official Certifications & Credentials */}
-      <div className="mt-20 md:mt-28 border-t border-white/10 pt-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      {/* Official Certifications & Credentials - Pure Editorial Layout */}
+      <div className="mt-20 md:mt-28 border-t border-white/15 pt-12">
+        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-8">
           <div>
-            <p className="text-xs font-mono uppercase tracking-widest text-sky-400 flex items-center gap-2">
-              <span className="size-1.5 rounded-full bg-sky-400 animate-pulse" />
+            <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-2 font-medium">
               {lang.expertise_section.cert_badge || "Kredensial Resmi"}
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mt-2">
+            <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-white">
               {lang.expertise_section.cert_title || "Sertifikasi Terverifikasi"}
             </h3>
           </div>
-          <p className="text-xs md:text-sm text-neutral-400 max-w-md">
-            {lang.expertise_section.cert_desc ||
-              "Kredensial profesional resmi dalam performa iklan digital, data analytics, dan optimasi konversi."}
+          <p className="text-xs md:text-sm text-neutral-400 max-w-md leading-relaxed">
+            {lang.expertise_section.cert_desc}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               src: "/assets/images/cert-google-analytics.png",
@@ -240,9 +238,9 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
               href={cert.src}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl"
+              className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <div className="relative aspect-[11/8.5] w-full overflow-hidden rounded-xl border border-white/10 bg-neutral-950/80 transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.15)]">
+              <div className="relative aspect-[11/8.5] w-full overflow-hidden bg-neutral-900 transition-opacity duration-300 group-hover:opacity-90">
                 <Image
                   src={cert.src}
                   alt={cert.alt}
@@ -251,16 +249,16 @@ export default function ExpertiseView({ lang }: ExpertiseViewProps) {
                   className="object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
-              <div className="mt-3 flex items-center justify-between px-1">
+              <div className="mt-3 flex items-baseline justify-between border-t border-white/10 pt-2">
                 <div>
-                  <h4 className="text-sm font-semibold text-white group-hover:text-sky-300 transition-colors">
+                  <h4 className="text-sm font-medium text-white group-hover:text-white transition-colors">
                     {cert.title}
                   </h4>
-                  <p className="text-xs text-neutral-400 font-medium">
+                  <p className="text-xs text-white/40 mt-0.5">
                     {cert.issuer}
                   </p>
                 </div>
-                <span className="text-xs text-neutral-400 group-hover:text-sky-400 transition-colors">
+                <span className="text-xs text-white/40 group-hover:text-white transition-colors">
                   ↗
                 </span>
               </div>
