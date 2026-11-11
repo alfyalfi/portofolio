@@ -40,6 +40,7 @@ function getLocale(request: NextRequest): AppLocale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = (request.headers.get("host") || "").toLowerCase();
 
   // Old /en and /id URLs (bookmarks, backlinks, the previous sitemap) move
   // permanently to the same path without the prefix, keeping their language.
@@ -61,14 +62,31 @@ export function proxy(request: NextRequest) {
     return res;
   }
 
+  const locale = getLocale(request);
+  const url = request.nextUrl.clone();
+
+  // Direct route alias "/portofolio" always renders the personal portfolio
+  if (pathname === "/portofolio" || pathname === "/portofolio/") {
+    url.pathname = `/${locale}`;
+    return NextResponse.rewrite(url);
+  }
+
+  // Main domain (alfaristudio.my.id / www.alfaristudio.my.id) serves the
+  // Alfaristudio Creative Digital Agency homepage at "/", while
+  // portofolio.alfaristudio.my.id serves the Personal Portfolio at "/".
+  const isMainStudioDomain =
+    host === "alfaristudio.my.id" ||
+    host === "www.alfaristudio.my.id" ||
+    host.startsWith("alfaristudio.my.id:");
+
+  if (isMainStudioDomain && pathname === "/") {
+    url.pathname = `/${locale}/studio`;
+    return NextResponse.rewrite(url);
+  }
+
   // Every language lives at the same URL: serve the prerendered /{locale}
   // page without changing the address bar.
-  // Caching caveat: "/" goes out with a long s-maxage and Next overrides any
-  // Vary header we set. Vercel is fine (its cache stores the /en and /id
-  // rewrite targets separately), but a CDN or reverse proxy that caches HTML
-  // by URL alone would serve one language to everyone; bypass it for HTML.
-  const url = request.nextUrl.clone();
-  url.pathname = `/${getLocale(request)}${pathname}`;
+  url.pathname = `/${locale}${pathname}`;
 
   return NextResponse.rewrite(url);
 }

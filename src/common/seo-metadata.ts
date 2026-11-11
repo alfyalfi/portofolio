@@ -4,7 +4,8 @@ import { expertise } from "@/data/expertise";
 import { email, socials } from "@/data/socials";
 import { works } from "@/data/works";
 
-const siteUrl = "https://alfaristudio.my.id";
+const siteUrl = "https://portofolio.alfaristudio.my.id";
+const studioSiteUrl = "https://alfaristudio.my.id";
 /** Every language is served at this one URL (see src/proxy.ts). */
 const pageUrl = `${siteUrl}/`;
 const siteName = "M. Firdaus Alfarizi";
@@ -27,17 +28,17 @@ const localizedSeo = {
   en: {
     locale: "en_US",
     // Name first: it is the query this page wins. Keep it under ~60 chars.
-    title: "M. Firdaus Alfarizi | Creative & Marketer, Palembang",
+    title: "M. Firdaus Alfarizi | Creative & Marketer Portfolio",
     description:
-      "M. Firdaus Alfarizi (Alfi) is a digital marketer, ads specialist, and content creator in Palembang, Indonesia, scaling companies with Meta Ads, Google Ads, TikTok Ads, and high-converting creatives.",
+      "Official portfolio of M. Firdaus Alfarizi (Alfi) at portofolio.alfaristudio.my.id — digital marketer, ads specialist, and content creator in Palembang, Indonesia.",
     siteDescription:
-      "Work experience and career journey of M. Firdaus Alfarizi, a digital marketer and ads specialist in Palembang.",
-    worksName: "Work experience",
-    ogImageAlt:
-      "M. Firdaus Alfarizi - Creative & Marketer",
+      "Work experience, case studies, and creative archive of M. Firdaus Alfarizi, founder of Alfaristudio Creative.",
+    worksName: "Featured case studies",
+    ogImageAlt: "M. Firdaus Alfarizi - Creative & Marketer",
     keywords: [
       "M. Firdaus Alfarizi",
       "Alfi",
+      "Alfaristudio Creative",
       "Creative & Marketer",
       "Digital Marketer Palembang",
       "Ads Specialist Indonesia",
@@ -50,17 +51,17 @@ const localizedSeo = {
   },
   id: {
     locale: "id_ID",
-    title: "M. Firdaus Alfarizi | Creative & Marketer Palembang",
+    title: "M. Firdaus Alfarizi | Portofolio Creative & Marketer",
     description:
-      "M. Firdaus Alfarizi (Alfi), creative marketer dan ads specialist asal Palembang yang membantu scale-up perusahaan dengan Meta Ads, Google Ads, TikTok Ads, dan konten kreatif berkonversi tinggi.",
+      "Portofolio resmi M. Firdaus Alfarizi (Alfi) di portofolio.alfaristudio.my.id — creative marketer, ads specialist, dan founder Alfaristudio Creative asal Palembang.",
     siteDescription:
-      "Perjalanan karir dan pengalaman kerja M. Firdaus Alfarizi, ads specialist dan digital marketer di Palembang.",
-    worksName: "Pengalaman kerja",
-    ogImageAlt:
-      "M. Firdaus Alfarizi - Creative & Marketer",
+      "Perjalanan karir, studi kasus kampanye, dan galeri karya M. Firdaus Alfarizi, ads specialist dan digital marketer di Palembang.",
+    worksName: "Studi kasus pilihan",
+    ogImageAlt: "M. Firdaus Alfarizi - Creative & Marketer",
     keywords: [
       "M. Firdaus Alfarizi",
       "Alfi",
+      "Alfaristudio Creative",
       "Creative & Marketer",
       "Digital Marketing Palembang",
       "Ads Specialist Indonesia",
@@ -88,6 +89,10 @@ export const socialProfiles = socials.map((social) => social.href);
 
 export function getSiteUrl() {
   return siteUrl;
+}
+
+export function getStudioSiteUrl() {
+  return studioSiteUrl;
 }
 
 export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
@@ -125,8 +130,20 @@ export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
       title: seo.title,
       description: seo.description,
       images: [
-        { url: ogImage, width: 1200, height: 630, alt: seo.ogImageAlt, type: "image/png" },
-        { url: ogImageSmall, width: 800, height: 600, alt: seo.ogImageAlt, type: "image/png" },
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: seo.ogImageAlt,
+          type: "image/png",
+        },
+        {
+          url: ogImageSmall,
+          width: 800,
+          height: 600,
+          alt: seo.ogImageAlt,
+          type: "image/png",
+        },
       ],
     },
     twitter: {
@@ -154,7 +171,69 @@ export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
   };
 }
 
-/** JSON-LD for the home page, as one @graph so the entities can reference each other. */
+export function buildStudioSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
+  const isId = lang === "id";
+  const title = isId
+    ? "Alfaristudio Creative | Jasa Digital Marketing, Meta Ads & Produksi Konten"
+    : "Alfaristudio Creative | Performance Ads, Creative Production & Web Studio";
+  const description = isId
+    ? "Alfaristudio Creative (alfaristudio.my.id) menyediakan jasa pengelolaan iklan digital (Meta Ads, Google Ads, TikTok Ads), produksi video & desain kreatif berkonversi tinggi, pembuatan website/landing page, serta setup Google Tag Manager & GA4."
+    : "Alfaristudio Creative (alfaristudio.my.id) is a digital growth studio offering Meta, Google & TikTok Ads management, high-converting video & creative production, web development, and GA4/GTM tracking.";
+
+  return {
+    metadataBase: new URL(studioSiteUrl),
+    title,
+    description,
+    applicationName: "Alfaristudio Creative",
+    referrer: "origin-when-cross-origin",
+    category: "marketing",
+    keywords: [
+      "Alfaristudio Creative",
+      "alfaristudio.my.id",
+      "Jasa Digital Marketing Palembang",
+      "Jasa Meta Ads",
+      "Jasa Google Ads",
+      "Jasa TikTok Ads",
+      "Jasa Pembuatan Konten Video",
+      "Jasa Landing Page",
+      "M. Firdaus Alfarizi",
+    ],
+    authors: [{ name: personName, url: pageUrl }],
+    creator: "Alfaristudio Creative",
+    publisher: "Alfaristudio Creative",
+    icons: { icon: "/favicon.ico" },
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "website",
+      locale: isId ? "id_ID" : "en_US",
+      url: "/",
+      siteName: "Alfaristudio Creative",
+      title,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: "Alfaristudio Creative",
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [{ url: ogImage, alt: "Alfaristudio Creative" }],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
+
+/** JSON-LD for the portfolio page, as one @graph so the entities can reference each other. */
 export function getHomeStructuredData(lang: AppLocale) {
   const seo = localizedSeo[lang];
 
@@ -178,7 +257,7 @@ export function getHomeStructuredData(lang: AppLocale) {
         jobTitle: "Creative & Marketer",
         description: seo.description,
         email: `mailto:${email}`,
-        sameAs: socialProfiles,
+        sameAs: [studioSiteUrl, ...socialProfiles],
         address: {
           "@type": "PostalAddress",
           addressLocality: "Palembang",
@@ -250,6 +329,35 @@ export function getHomeStructuredData(lang: AppLocale) {
         })),
       },
     ],
+  };
+}
+
+export function getStudioStructuredData(lang: AppLocale) {
+  const isId = lang === "id";
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${studioSiteUrl}/#agency`,
+    name: "Alfaristudio Creative",
+    url: `${studioSiteUrl}/`,
+    logo: `${studioSiteUrl}/assets/images/brand-f.png`,
+    image: `${studioSiteUrl}${ogImage}`,
+    founder: {
+      "@type": "Person",
+      name: personName,
+      url: pageUrl,
+    },
+    description: isId
+      ? "Agensi dan studio pertumbuhan digital yang berfokus pada Performance Ads (Meta, Google, TikTok Ads), Produksi Konten Video & Visual Kreatif, Web Development, serta Analitik Konversi."
+      : "Digital growth studio specializing in Performance Ads (Meta, Google, TikTok Ads), Creative Video & Visual Production, Web Development, and Conversion Analytics.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Palembang",
+      addressRegion: "Sumatera Selatan",
+      addressCountry: "ID",
+    },
+    email: `mailto:${email}`,
+    sameAs: [pageUrl, ...socialProfiles],
   };
 }
 
