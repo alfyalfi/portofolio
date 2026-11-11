@@ -17,6 +17,21 @@
     "cert_title": "Verified Certifications",
     "cert_desc": "Official professional credentials in digital performance marketing, data analytics, and conversion optimization."
   },
+  "showcase_section": {
+    "eyebrow": "Visual & Production Archive",
+    "title": "Creative Archive",
+    "subtitle": "Curated collection of walkthrough video productions, property campaign visuals, viral educational hooks, and verified Meta Ads & GTM data.",
+    "categories": {
+      "all": "All Works",
+      "video": "Video & Reels",
+      "property": "Property Campaigns",
+      "viral": "Viral Content",
+      "analytics": "Ads & GTM Proof"
+    },
+    "play_video": "PLAY VIDEO ▶",
+    "pause_video": "PAUSE ❚❚",
+    "close_preview": "CLOSE [×]"
+  },
   "works_section": {
     "title": "Featured case studies",
     "badge": "Deep-Dive Case Study",

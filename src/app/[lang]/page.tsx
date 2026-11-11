@@ -46,6 +46,7 @@ export default async function Page(props: {
         <Section id="services" lang={t}></Section>
         <Section id="works" lang={t}></Section>
         <Section id="expertise" lang={t}></Section>
+        <Section id="showcase" lang={t}></Section>
         <Section id="quote" lang={t}></Section>
         <Footer lang={t} />
       </PageClientLayout>

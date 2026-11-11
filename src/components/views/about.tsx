@@ -34,7 +34,7 @@ export default function AboutView({ lang }: AboutViewProps) {
 
       {/* Desktop Image. Measured from the top: the video's scroll comes after
           it and must not move it. */}
-      <div className="hidden md:block w-[32vw] h-auto absolute top-[calc(150vh+10.5rem)] left-24 -translate-y-1/2 aspect-4/3 overflow-hidden rounded-xl border border-neutral-800 shadow-2xl">
+      <div className="hidden md:block w-[28vw] h-auto absolute top-[calc(150vh+10.5rem)] left-24 -translate-y-1/2 aspect-3/4 overflow-hidden">
         <RevealImage
           src="/assets/images/alfarizi.jpg"
           alt="M. Firdaus Alfarizi"
@@ -43,7 +43,7 @@ export default function AboutView({ lang }: AboutViewProps) {
           quality={90}
           sizes="35vw"
           style={{ height: "auto" }}
-          className="size-full object-cover scale-105"
+          className="size-full object-cover scale-125"
         />
       </div>
 
@@ -95,15 +95,15 @@ export default function AboutView({ lang }: AboutViewProps) {
 
       <div className="md:hidden flex flex-col w-full">
         {/* Mobile Image */}
-        <div className="relative mt-12 w-full max-w-[320px] aspect-4/3 overflow-hidden rounded-xl border border-neutral-800">
+        <div className="relative mt-12 w-55 aspect-2/3 overflow-hidden">
           <RevealImage
             src="/assets/images/alfarizi.jpg"
             alt="M. Firdaus Alfarizi"
             width={1024}
             height={768}
             quality={90}
-            sizes="320px"
-            className="size-full object-cover scale-105"
+            sizes="275px"
+            className="size-full object-cover scale-125"
           />
         </div>
       </div>
@@ -111,8 +111,7 @@ export default function AboutView({ lang }: AboutViewProps) {
       {/* Desktop: reaches back a screen, less the text's padding, so the small
           video arrives beside the text, not after it */}
       <GrowingVideo
-        src="/assets/videos/real-estate-walkthrough.mp4"
-        poster="/assets/images/cine-avan-100826.png"
+        src="/assets/videos/test-video.mp4"
         className="max-md:mt-12 md:motion-safe:-mt-[calc(100vh-8rem)]"
       />
     </section>

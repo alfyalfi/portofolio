@@ -17,6 +17,21 @@
     "cert_title": "Sertifikasi Terverifikasi",
     "cert_desc": "Kredensial profesional resmi dalam performa iklan digital, data analytics, dan optimasi konversi."
   },
+  "showcase_section": {
+    "eyebrow": "Arsip Visual & Produksi",
+    "title": "Galeri Karya",
+    "subtitle": "Kumpulan produksi video walkthrough, poster kampanye properti, konten edukasi viral, hingga bukti performa Meta Ads & Google Tag Manager.",
+    "categories": {
+      "all": "Semua Karya",
+      "video": "Video & Reels",
+      "property": "Kampanye Properti",
+      "viral": "Konten Viral",
+      "analytics": "Data Iklan & GTM"
+    },
+    "play_video": "PUTAR VIDEO ▶",
+    "pause_video": "JEDA ❚❚",
+    "close_preview": "TUTUP [×]"
+  },
   "works_section": {
     "title": "Studi kasus pilihan",
     "badge": "Studi Kasus Mendalam",

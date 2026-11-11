@@ -31,18 +31,16 @@ const Views = {
   quote: QuoteView,
 };
 
-// Sections that pin their content need a block parent: GSAP turns pin
-// spacing off by default when the pinned element sits in a flex container.
-const blockSections: Props["id"][] = ["works", "expertise", "quote"];
+// Sections that pin their content or render full-width editorial grids need a block parent:
+// GSAP turns pin spacing off by default when the pinned element sits in a flex container.
+const blockSections: Props["id"][] = ["works", "expertise", "showcase", "quote"];
 
 export default function Section(props: Props) {
   const View = Views[props.id];
-  // The showcase's fixed cards fly over the quote that follows it
-  const layer = props.id === "showcase" ? "z-20 motion-reduce:hidden" : "z-10";
 
   return (
     <section
-      className={`${blockSections.includes(props.id) ? "block" : "flex"} w-screen ${props.id === "hero" ? "" : `min-h-screen relative bg-[#0a0a0a] ${layer}`}`}
+      className={`${blockSections.includes(props.id) ? "block" : "flex"} w-screen ${props.id === "hero" ? "" : "min-h-screen relative bg-[#0a0a0a] z-10"}`}
     >
       <View lang={props.lang} />
     </section>
