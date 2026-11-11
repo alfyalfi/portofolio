@@ -7,7 +7,9 @@
   },
   "about_section": {
     "title": "Tentang Saya",
-    "paragraph": "seorang creative marketer dan ads specialist dari palembang yang memadukan strategi performa iklan berbasis data dengan konten kreatif berkonversi tinggi."
+    "paragraph": "seorang creative marketer dan ads specialist dari palembang yang memadukan strategi performa iklan berbasis data dengan konten kreatif berkonversi tinggi.",
+    "timeline_badge": "Riwayat Karir",
+    "timeline_title": "Perjalanan Profesional (2021 — 2026)"
   },
   "expertise_section": {
     "title": "Keahlian & Tools",
@@ -16,12 +18,15 @@
     "cert_desc": "Kredensial profesional resmi dalam performa iklan digital, data analytics, dan optimasi konversi."
   },
   "works_section": {
-    "title": "Pengalaman kerja",
-    "timeline_badge": "Timeline Karir",
-    "see_work": "Konsultasi Karir & Proyek",
+    "title": "Studi kasus pilihan",
+    "badge": "Studi Kasus Mendalam",
+    "challenge_label": "Tantangan",
+    "strategy_label": "Strategi",
+    "results_label": "Hasil Nyata",
+    "see_work": "Konsultasi Proyek Serupa",
     "next": "Next",
     "up_next": "Selanjutnya",
-    "teaser": ["Perjalanan karir.", "Siap kembangkan", "perusahaanmu?"]
+    "teaser": ["Hasil terbukti.", "Siap kembangkan", "perusahaanmu?"]
   },
   "quote_section": {
     "quote": "creative gets the attention, data drives the conversion"

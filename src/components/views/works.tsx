@@ -21,7 +21,10 @@ type WorksViewProps = {
     expertise_section: { title: string };
     works_section: {
       title: string;
-      timeline_badge?: string;
+      badge?: string;
+      challenge_label?: string;
+      strategy_label?: string;
+      results_label?: string;
       see_work: string;
       next: string;
       up_next: string;
@@ -192,8 +195,8 @@ export default function WorksView({ lang }: WorksViewProps) {
           media.add(
             "(max-width: 767.98px) and (prefers-reduced-motion: no-preference)",
             () => {
-              const hidden = { clipPath: "inset(100% 0% 0% 0%)" };
-              const shown = { clipPath: "inset(0% 0% 0% 0%)" };
+              const hidden = { clipPath: "inset(100% 0% 0%)" };
+              const shown = { clipPath: "inset(0% 0% 0%)" };
 
               gsap.utils
                 .toArray<HTMLElement>("article", track)
@@ -241,11 +244,11 @@ export default function WorksView({ lang }: WorksViewProps) {
       ref={rootRef}
       className="relative w-full overflow-x-clip bg-[#0a0a0a] text-white md:h-dvh md:overflow-hidden"
     >
-      {/* md:contents drops this wrapper's box on desktop */}
+      {/* Section Title Header with gradient fill mask */}
       <div className="px-4 pt-12 pb-2 md:contents">
         <h2
           ref={titleRef}
-          className="pointer-events-none text-[11vw] uppercase font-bold tracking-tight md:absolute md:left-8 md:top-[8vh] md:z-0 md:max-w-[90vw] md:text-[6vw] [--fill:100%] md:[--fill:0%] bg-[linear-gradient(90deg,#fff_var(--fill),rgb(255_255_255/0.2)_var(--fill))] bg-clip-text text-transparent"
+          className="pointer-events-none text-[11vw] uppercase font-bold tracking-tight md:absolute md:left-8 md:top-[8vh] md:z-0 md:max-w-[90vw] md:text-[5.5vw] [--fill:100%] md:[--fill:0%] bg-[linear-gradient(90deg,#fff_var(--fill),rgb(255_255_255/0.2)_var(--fill))] bg-clip-text text-transparent"
         >
           {lang.works_section.title}
         </h2>
@@ -254,52 +257,49 @@ export default function WorksView({ lang }: WorksViewProps) {
       <div className="md:h-full md:overflow-hidden">
         <div
           ref={trackRef}
-          className="flex flex-col gap-16 px-4 pt-6 md:h-full md:w-max md:flex-row md:items-center md:gap-[15vw] md:pt-0 md:pr-0 md:pl-[20vw]"
+          className="flex flex-col gap-16 px-4 pt-6 md:h-full md:w-max md:flex-row md:items-center md:gap-[16vw] md:pt-0 md:pr-0 md:pl-[20vw]"
         >
           {works.map((work, index) => (
             <article
               key={work.id}
-              className={`w-full max-w-md shrink-0 md:w-[480px] lg:w-[520px] md:self-auto ${
+              className={`w-full max-w-xl shrink-0 md:w-[600px] lg:w-[640px] md:self-auto ${
                 index % 2 === 0
-                  ? "self-start md:translate-y-[4vh]"
-                  : "self-end md:translate-y-[-3vh]"
+                  ? "self-start md:translate-y-[2vh]"
+                  : "self-end md:translate-y-[-2vh]"
               }`}
             >
-              <div className="group relative rounded-2xl border border-white/10 bg-neutral-950/85 backdrop-blur-xl p-5 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-sky-400/40 hover:shadow-[0_0_35px_rgba(56,189,248,0.15)]">
-                {/* Timeline Header with Period Pill & Counter */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-white/10">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex size-7 items-center justify-center rounded-lg bg-sky-400/10 text-sky-400 font-mono text-xs font-bold border border-sky-400/30">
+              <div className="group relative rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-2xl p-5 md:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-sky-400/40 hover:shadow-[0_0_40px_rgba(56,189,248,0.12)]">
+                {/* Header: Theme Badge & Case Study Counter */}
+                <div className="flex items-center justify-between gap-3 pb-3 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="flex size-6 items-center justify-center rounded-md bg-sky-400/10 text-sky-400 font-mono text-xs font-bold border border-sky-400/30">
                       0{index + 1}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-400 border border-sky-400/30">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 px-2.5 py-0.5 text-xs font-semibold text-sky-400 border border-sky-400/30">
                       <span className="size-1.5 rounded-full bg-sky-400 animate-pulse" />
-                      {work.period}
+                      {work.theme[locale]}
                     </span>
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400">
-                    Step 0{index + 1} / 0{works.length}
+                    {work.period}
                   </span>
                 </div>
 
-                {/* Company & Role Details */}
+                {/* Client & Title Header */}
                 <div className="mt-3.5">
-                  <p className="text-xs uppercase tracking-wider font-semibold text-neutral-300">
-                    {work.company[locale]}
+                  <p className="text-xs uppercase tracking-wider font-semibold text-neutral-400">
+                    {work.client} • {work.role[locale]}
                   </p>
-                  {work.subCompany && (
-                    <p className="text-[11px] text-neutral-400 font-medium mt-0.5">
-                      {work.subCompany[locale]}
-                    </p>
-                  )}
-                  <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white mt-1.5 group-hover:text-sky-300 transition-colors">
-                    {work.role[locale]}
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white mt-1 group-hover:text-sky-300 transition-colors">
+                    {work.title}
                   </h3>
+                  <p className="text-xs md:text-sm text-neutral-300 mt-1 leading-relaxed italic">
+                    &ldquo;{work.tagline[locale]}&rdquo;
+                  </p>
                 </div>
 
-                {/* Interactive Media Showcase */}
-                <figure className="relative aspect-16/10 overflow-hidden rounded-xl border border-white/10 bg-neutral-900 mt-4 group-hover:border-sky-400/30 transition-colors">
-                  {/* Mobile reveal: lime panel shown before the image */}
+                {/* Media Showcase (WebGL Hover Image) */}
+                <figure className="relative aspect-16/9 overflow-hidden rounded-xl border border-white/10 bg-neutral-900 mt-3.5 group-hover:border-sky-400/30 transition-colors">
                   <div
                     data-reveal-panel
                     aria-hidden="true"
@@ -315,36 +315,72 @@ export default function WorksView({ lang }: WorksViewProps) {
                   </div>
                 </figure>
 
-                {/* Description & Key Highlights */}
+                {/* Deep-Dive Case Study: Problem -> Strategy -> Metrics */}
                 <div className="relative mt-4 text-white">
-                  <p className="text-xs md:text-sm text-neutral-400 leading-relaxed">
-                    {work.description[locale]}
-                  </p>
+                  {/* Problem & Strategy Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
+                        <span className="size-1.5 rounded-full bg-amber-400" />
+                        {lang.works_section.challenge_label || "Tantangan"}
+                      </div>
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        {work.problem[locale]}
+                      </p>
+                    </div>
 
-                  <ul className="mt-3 space-y-1.5 text-xs text-neutral-300">
-                    {work.highlights[locale].map((point, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="mt-1 size-1.5 rounded-full bg-sky-400 shrink-0" />
-                        <span className="leading-snug">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-sky-400 uppercase tracking-wider mb-1">
+                        <span className="size-1.5 rounded-full bg-sky-400" />
+                        {lang.works_section.strategy_label || "Strategi"}
+                      </div>
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        {work.strategy[locale]}
+                      </p>
+                    </div>
+                  </div>
 
-                  {/* Skills tags */}
+                  {/* Proven Impact & Metrics Highlight */}
+                  <div className="mt-3.5">
+                    <p className="text-[11px] uppercase tracking-wider font-mono font-semibold text-neutral-400 mb-2">
+                      {lang.works_section.results_label || "Hasil & Metrik Nyata"}
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {work.metrics.map((metric, mIdx) => (
+                        <div
+                          key={mIdx}
+                          className="rounded-lg border border-sky-400/20 bg-sky-950/20 p-2.5 text-center transition-colors hover:border-sky-400/40 hover:bg-sky-950/30"
+                        >
+                          <div className="text-base md:text-lg font-bold font-mono tracking-tight text-sky-400">
+                            {metric.value}
+                          </div>
+                          <div className="text-[10px] font-semibold text-neutral-200 mt-0.5 line-clamp-1">
+                            {metric.label[locale]}
+                          </div>
+                          <div className="text-[9px] text-neutral-400 line-clamp-1 mt-0.5">
+                            {metric.sublabel[locale]}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 mt-3.5 pt-3 border-t border-white/5">
                     {work.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-white/5 text-neutral-400 border border-white/5 hover:text-neutral-200 transition-colors"
+                        className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-white/5 text-neutral-400 border border-white/5"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
+                  {/* CTA Action */}
                   <a
                     href="#contact"
-                    className="mt-4 block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-lg"
+                    className="mt-3.5 block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-lg"
                   >
                     <ArrowButton
                       label={lang.works_section.see_work}

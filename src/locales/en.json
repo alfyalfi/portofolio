@@ -7,7 +7,9 @@
   },
   "about_section": {
     "title": "About me",
-    "paragraph": "i'm a creative marketer and ads specialist from palembang, combining data-driven paid traffic strategies with high-converting creative content."
+    "paragraph": "i'm a creative marketer and ads specialist from palembang, combining data-driven paid traffic strategies with high-converting creative content.",
+    "timeline_badge": "Career Path",
+    "timeline_title": "Professional Journey (2021 — 2026)"
   },
   "expertise_section": {
     "title": "Expertise & Tools",
@@ -16,12 +18,15 @@
     "cert_desc": "Official professional credentials in digital performance marketing, data analytics, and conversion optimization."
   },
   "works_section": {
-    "title": "Work experience",
-    "timeline_badge": "Career Timeline",
-    "see_work": "Let's Collaborate",
+    "title": "Featured case studies",
+    "badge": "Deep-Dive Case Study",
+    "challenge_label": "The Challenge",
+    "strategy_label": "Strategy",
+    "results_label": "Proven Impact",
+    "see_work": "Discuss Similar Project",
     "next": "Next",
     "up_next": "Up next",
-    "teaser": ["Proven journey.", "Ready to scale", "your company?"]
+    "teaser": ["Proven results.", "Ready to scale", "your company?"]
   },
   "quote_section": {
     "quote": "creative gets the attention, data drives the conversion"

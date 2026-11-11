@@ -2,6 +2,7 @@ import { getSiteUrl, socialProfiles } from "@/common/seo-metadata";
 import { expertise } from "@/data/expertise";
 import { email } from "@/data/socials";
 import { works } from "@/data/works";
+import { careerTimeline } from "@/data/career";
 
 // llms.txt (https://llmstxt.org): a plain summary for AI assistants.
 export const dynamic = "force-static";
@@ -15,9 +16,13 @@ export function GET() {
 
 The portfolio is available at ${siteUrl}/ in Indonesian and English.
 
-## Work experience & career timeline
+## Career Journey (2021 — 2026)
 
-${works.map((work) => `- [${work.period}] ${work.role.en} at ${work.company.en} (${work.subCompany ? work.subCompany.en : work.category}): ${work.description.en}`).join("\n")}
+${careerTimeline.map((item) => `- [${item.period}] ${item.role.en} at ${item.company.en} (${item.category.en}): ${item.summary.en}`).join("\n")}
+
+## Featured Case Studies & Creative Works
+
+${works.map((work) => `- [${work.theme.en}] ${work.title}: ${work.tagline.en} | Metrics: ${work.metrics.map((m) => `${m.value} (${m.label.en})`).join(", ")}`).join("\n")}
 
 ## Expertise & Tools
 

@@ -1,6 +1,23 @@
+export type CaseStudyMetric = {
+  value: string;
+  label: {
+    id: string;
+    en: string;
+  };
+  sublabel: {
+    id: string;
+    en: string;
+  };
+};
+
 export type Work = {
   id: number;
   period: string;
+  theme: {
+    id: string;
+    en: string;
+  };
+  client: string;
   role: {
     en: string;
     id: string;
@@ -19,6 +36,23 @@ export type Work = {
   image: string;
   hoverImage: string;
   hoverBackground: string;
+  tagline: {
+    id: string;
+    en: string;
+  };
+  problem: {
+    id: string;
+    en: string;
+  };
+  strategy: {
+    id: string;
+    en: string;
+    points: {
+      id: string[];
+      en: string[];
+    };
+  };
+  metrics: CaseStudyMetric[];
   description: {
     en: string;
     id: string;
@@ -33,52 +67,121 @@ export type Work = {
 export const works: Work[] = [
   {
     id: 1,
-    period: "2021 — 2023",
+    period: "2025 — 2026",
+    theme: {
+      id: "Real Estate & Properti Scaling",
+      en: "Real Estate & Property Scaling",
+    },
+    client: "RK Group Property",
     role: {
-      id: "Personal Content Creator & Local Influencer",
-      en: "Personal Content Creator & Local Influencer",
+      id: "Ads Specialist & Content Creator",
+      en: "Ads Specialist & Content Creator",
     },
     company: {
-      id: "Independent / Local Influencer",
-      en: "Independent / Local Influencer",
+      id: "RK Group Property",
+      en: "RK Group Property",
     },
     subCompany: {
-      id: "Palembang Creative & Social Media",
-      en: "Palembang Creative & Social Media",
+      id: "Avana • Ammaia Ecoforest • Alzafa 3",
+      en: "Avana • Ammaia Ecoforest • Alzafa 3",
     },
-    title: "Personal Content Creator & Local Influencer",
-    category: "Content Creation & Viral Reach",
+    title: "RK Group Property — Scale-Up Iklan Properti Komersil & Subsidi",
+    category: "Real Estate Lead Gen & Meta Ads",
     href: "#contact",
-    image: "/assets/images/tips-posisi.jpg",
-    hoverImage: "/assets/images/brand-tiktok.jpg",
-    hoverBackground: "#0e7490",
+    image: "/assets/images/avana-1m-aja.png",
+    hoverImage: "/assets/images/dashboard-avana.jpg",
+    hoverBackground: "#0c4a6e",
+    tagline: {
+      id: "Mengakuisisi 1.190+ prospek pembeli rumah tervalidasi dengan Meta Ads presisi & video tour influencer.",
+      en: "Acquiring 1,190+ qualified property buyer leads via precision Meta Ads and influencer house tours.",
+    },
+    problem: {
+      id: "Tingginya persaingan pasar properti dan biaya iklan konvensional (billboard/brosur) yang tidak terukur. Banyak leads pesan biasa tidak lolos kualifikasi BI Checking (SLIK OJK) perbankan untuk KPR, sehingga membuang waktu tindak lanjut tim sales.",
+      en: "Saturated regional real estate market and bloated untracked conventional ads. Inbound social leads regularly failed bank SLIK/OJK mortgage checks, wasting sales agents' closing hours.",
+    },
+    strategy: {
+      id: "Membangun funnel multi-level: video house-tour influencer di Instagram & TikTok untuk daya tarik emosional, dilanjutkan Meta Ads terarah (Custom & Lookalike Audiences) dengan formulir instan penyaring kualifikasi KPR sebelum dialirkan ke tim sales WhatsApp.",
+      en: "Engineered a multi-tier funnel: high-production influencer walkthroughs creating emotional living appeal, retargeted with Meta Instant Forms pre-qualifying mortgage readiness before routing to sales WhatsApp.",
+      points: {
+        id: [
+          "Produksi video house-tour selebriti/influencer & video sinematik unit",
+          "Formulir kualifikasi KPR instan menyaring penghasilan & kesiapan DP",
+          "A/B testing visual kreatif dan optimasi rasio biaya per hasil (CPR)",
+        ],
+        en: [
+          "Influencer walkthrough reels and cinematic property unit tours",
+          "Instant lead forms screening income, DP readiness, and credit health",
+          "A/B testing visual creatives and optimizing cost-per-result (CPR)",
+        ],
+      },
+    },
+    metrics: [
+      {
+        value: "1.190+",
+        label: {
+          id: "Qualified Leads",
+          en: "Qualified Leads",
+        },
+        sublabel: {
+          id: "Total Prospek KPR Tervalidasi",
+          en: "Validated Home-Buyer Inquiries",
+        },
+      },
+      {
+        value: "Rp 2.850",
+        label: {
+          id: "Rekor CPR Terendah",
+          en: "Lowest Record CPR",
+        },
+        sublabel: {
+          id: "Perumahan Subsidi Alzafa 3",
+          en: "Alzafa 3 Affordable Housing",
+        },
+      },
+      {
+        value: "3.92%",
+        label: {
+          id: "Rata-rata CTR Iklan",
+          en: "Average Ad CTR",
+        },
+        sublabel: {
+          id: "Klaster Ammaia Ecoforest",
+          en: "Ammaia Ecoforest Smart Cluster",
+        },
+      },
+    ],
     description: {
-      id: "Membangun personal branding dan memproduksi konten digital kreatif di TikTok & Instagram, berkolaborasi dengan berbagai brand & bisnis lokal Palembang untuk mendongkrak brand awareness serta engagement audiens.",
-      en: "Built personal branding and produced creative viral short-form content across TikTok & Instagram, collaborating with local brands and businesses to drive organic reach and high audience engagement.",
+      id: "Memimpin strategi iklan berbayar (Meta Ads & TikTok Ads) dan produksi konten kreatif untuk portofolio properti RK Group Property (Avana, Ammaia Ecoforest, Alzafa 3), mendatangkan ribuan prospek pembeli rumah tervalidasi dengan biaya efisien.",
+      en: "Led paid advertising campaigns (Meta Ads & TikTok Ads) and creative video production for RK Group Property developments (Avana, Ammaia Ecoforest, Alzafa 3), acquiring thousands of qualified home-buyer leads at scale.",
     },
     highlights: {
       id: [
-        "Memproduksi video pendek kreatif & tutorial dengan pendekatan storytelling dan retensi penonton tinggi",
-        "Membangun personal branding yang konsisten dan interaksi komunitas media sosial yang aktif",
-        "Bekerja sama dalam endorsement & promosi brand lokal Palembang untuk meningkatkan brand awareness",
+        "168+ buyer leads Avana Commercial di CPR optimal Rp 3.420",
+        "342+ qualified WhatsApp leads Ammaia Ecoforest (CTR 3.92%, CPL Rp 3.150)",
+        "680+ prospek KPR tervalidasi Alzafa 3 di rekor biaya hemat Rp 2.850",
       ],
       en: [
-        "Produced creative short-form video content with high audience retention and viral organic reach",
-        "Established consistent personal branding and active social media community engagement",
-        "Partnered with local Palembang brands and businesses for impactful promotional campaigns",
+        "168+ Avana Commercial buyer leads acquired at optimal Rp 3,420 CPR",
+        "342+ qualified WhatsApp leads for Ammaia Ecoforest (3.92% CTR, Rp 3,150 CPL)",
+        "680+ mortgage-qualified leads for Alzafa 3 at record Rp 2,850 CPR",
       ],
     },
     tags: [
-      "Content Creation",
-      "Personal Branding",
-      "Short-Form Video",
-      "TikTok & Reels",
-      "Organic Growth",
+      "Meta Ads (FB & IG)",
+      "WhatsApp Funnel",
+      "KPR Lead Generation",
+      "Influencer House Tour",
+      "ROAS Optimization",
     ],
   },
   {
     id: 2,
     period: "2024 — 2025",
+    theme: {
+      id: "E-Commerce & Retail Omnichannel",
+      en: "E-Commerce & Retail Omnichannel",
+    },
+    client: "CV Eltech Sriwijaya Abadi",
     role: {
       id: "Staff Digital Marketing & E-Commerce",
       en: "Digital Marketing & E-Commerce Staff",
@@ -91,81 +194,202 @@ export const works: Work[] = [
       id: "Station CCTV & Rumah AC",
       en: "Station CCTV & Rumah AC",
     },
-    title: "Staff Digital Marketing & E-Commerce — CV Eltech Sriwijaya Abadi",
-    category: "Omnichannel E-Commerce & Ads",
+    title: "CV Eltech Sriwijaya Abadi — Omnichannel E-Commerce & Retail Growth",
+    category: "Marketplace Ads & Omnichannel Sales",
     href: "#contact",
     image: "/assets/images/work-omnichannel-growth.jpg",
     hoverImage: "/assets/images/meta-dashboard-1.jpg",
     hoverBackground: "#0f172a",
+    tagline: {
+      id: "Transformasi penjualan perangkat CCTV & pendingin ruangan dari toko fisik ke ekosistem marketplace & digital beromset tinggi.",
+      en: "Transforming physical retail CCTV and air-conditioner sales into a high-converting digital marketplace ecosystem.",
+    },
+    problem: {
+      id: "Ketergantungan pada pelanggan offline di toko fisik, minimnya visibilitas official store online di Shopee & Tokopedia, serta katalog produk teknis yang membingungkan calon pembeli dan menghambat keputusan checkout.",
+      en: "Over-reliance on physical walk-in foot traffic, low organic visibility across Shopee and Tokopedia official stores, and technical listings that overwhelmed buyers and hurt conversion rates.",
+    },
+    strategy: {
+      id: "Merestrukturisasi seluruh katalog produk dengan visual infografis edukatif, optimasi SEO kata kunci marketplace, bundling paket instalasi siap pakai, serta kampanye Shopee Ads & Meta Ads lokal yang terintegrasi dengan chat konsultasi cepat.",
+      en: "Overhauled product listings with educational infographic visuals, marketplace SEO optimization, turnkey installation packages, and targeted Shopee + Meta Ads channeled into instant consultation chat.",
+      points: {
+        id: [
+          "Optimasi visual katalog produk & deskripsi fokus solusi pengguna",
+          "Strategi bundling paket siap pasang untuk perumahan dan kantor",
+          "Integrasi paid traffic ke saluran closing chat dan follow-up cepat",
+        ],
+        en: [
+          "Product catalog optimization focused on user benefit infographics",
+          "Turnkey installation bundling strategy for residential and office clients",
+          "Paid traffic integration into real-time consultative sales closing",
+        ],
+      },
+    },
+    metrics: [
+      {
+        value: "4.2x",
+        label: {
+          id: "Average ROAS",
+          en: "Average ROAS",
+        },
+        sublabel: {
+          id: "Promo Kampanye & Flash Sale",
+          en: "Payday Promo & Flash Campaigns",
+        },
+      },
+      {
+        value: "+240%",
+        label: {
+          id: "Pertumbuhan GMV",
+          en: "GMV Sales Growth",
+        },
+        sublabel: {
+          id: "Penjualan Online Marketplace",
+          en: "Online Marketplace Channels",
+        },
+      },
+      {
+        value: "4.9 / 5.0",
+        label: {
+          id: "Rating Toko Resmi",
+          en: "Official Store Rating",
+        },
+        sublabel: {
+          id: "Ratusan Review Kepuasan Pembeli",
+          en: "Hundreds of Verified Reviews",
+        },
+      },
+    ],
     description: {
-      id: "Mengelola ekosistem digital marketing dan operasional e-commerce untuk unit bisnis Station CCTV dan Rumah AC. Bertanggung jawab atas pengelolaan marketplace, strategi promosi digital, optimasi katalog produk, dan peningkatan closing rate penjualan.",
-      en: "Managed digital marketing operations and omnichannel e-commerce channels for Station CCTV and Rumah AC. Spearheaded marketplace campaigns, catalog optimization, digital promos, and customer conversion improvements.",
+      id: "Mengelola ekosistem digital marketing dan operasional e-commerce untuk unit bisnis Station CCTV dan Rumah AC, meningkatkan closing rate penjualan dan memenangkan pasar perangkat keamanan lokal.",
+      en: "Managed digital marketing operations and omnichannel e-commerce channels for Station CCTV and Rumah AC, driving higher sales conversion and dominating the regional security equipment niche.",
     },
     highlights: {
       id: [
-        "Mengelola operasional toko resmi marketplace (Shopee & Tokopedia) Station CCTV & Rumah AC",
-        "Merancang strategi promosi berkala, optimasi SEO katalog produk, dan funnel konversi pembeli",
-        "Mengintegrasikan traffic digital berbayar & organik ke saluran penjualan langsung dan chat konsultasi",
+        "Pengelolaan official store marketplace (Shopee & Tokopedia) Station CCTV & Rumah AC",
+        "Peningkatan penjualan unit dan instalasi dengan ROAS stabil di atas 4x",
+        "Penetapan standar customer service konsultasi cepat berkonversi tinggi",
       ],
       en: [
-        "Managed official marketplace store operations (Shopee & Tokopedia) for Station CCTV & Rumah AC",
-        "Designed promotional campaigns, product catalog optimization, and buyer conversion funnels",
-        "Integrated paid and organic digital traffic into direct consultation and sales closing pipelines",
+        "Official marketplace store management (Shopee & Tokopedia) for Station CCTV & Rumah AC",
+        "Scaled unit sales and service installations maintaining consistent 4x+ ROAS",
+        "Standardized consultative customer service workflows driving rapid order closing",
       ],
     },
     tags: [
-      "Digital Marketing",
-      "E-Commerce",
-      "Marketplace Ads",
+      "Shopee & Tokopedia Ads",
+      "Catalog SEO",
+      "Omnichannel Retail",
       "Station CCTV",
       "Rumah AC",
-      "Sales Funnel",
     ],
   },
   {
     id: 3,
-    period: "2025 — 2026",
+    period: "2021 — 2023",
+    theme: {
+      id: "Creative Content & Media Viral",
+      en: "Creative Content & Viral Media",
+    },
+    client: "Driving Academy & Brand Lokal",
     role: {
-      id: "Ads Specialist & Content Creator",
-      en: "Ads Specialist & Content Creator",
+      id: "Personal Content Creator & Local Influencer",
+      en: "Personal Content Creator & Local Influencer",
     },
     company: {
-      id: "RK Group Property",
-      en: "RK Group Property",
+      id: "Independent / Local Influencer",
+      en: "Independent / Local Influencer",
     },
     subCompany: {
-      id: "Developer Perumahan Subsidi & Komersil",
-      en: "Subsidized & Commercial Housing Developer",
+      id: "Palembang Creative Media",
+      en: "Palembang Creative Media",
     },
-    title: "Ads Specialist & Content Creator — RK Group Property",
-    category: "Meta Ads & Real Estate Marketing",
+    title: "Viral Media & Brand Growth Strategy — Konten Edukasi Berkonversi",
+    category: "Short-Form Video & Organic Growth",
     href: "#contact",
-    image: "/assets/images/avana-1m-aja.png",
-    hoverImage: "/assets/images/dashboard-avana.jpg",
-    hoverBackground: "#0c4a6e",
+    image: "/assets/images/tips-posisi.jpg",
+    hoverImage: "/assets/images/brand-tiktok.jpg",
+    hoverBackground: "#0e7490",
+    tagline: {
+      id: "Menciptakan serial konten video edukatif viral dengan hook psikologis yang melipatgandakan pendaftaran siswa baru secara organik.",
+      en: "Crafting viral educational tutorials with psychological hooks, multiplying organic customer acquisitions.",
+    },
+    problem: {
+      id: "Bisnis kursus mengemudi dan brand lokal mengalami penurunan atensi audiens karena promosi konvensional yang kaku, membosankan, dan terus dilewati oleh pengguna media sosial muda di timeline TikTok & Instagram.",
+      en: "Driving academies and local commercial brands experienced audience fatigue due to rigid promotional formats repeatedly skipped on fast-moving TikTok and Instagram feeds.",
+    },
+    strategy: {
+      id: "Merancang konten video vertikal berbasis empati: menjawab kecemasan terbesar pemula saat belajar menyetir ('tips rasa kopling', 'posisi duduk anti tegang') dengan hook 3 detik awal yang kuat, storytelling santai khas lokal, dan ritme editing dinamis.",
+      en: "Engineered high-empathy vertical video series addressing beginners' greatest road anxieties with sharp 3-second tension hooks, relatable conversational storytelling, and dynamic rhythmic editing.",
+      points: {
+        id: [
+          "Riset pain points emosional terbesar audiens pemula saat belajar menyetir",
+          "Hook 3 detik pertama pencegah scroll dengan visual demonstrasi langsung",
+          "Call to action organik yang memicu ratusan komentar, shares, dan bookmark",
+        ],
+        en: [
+          "Targeted research on beginners' emotional road anxieties and hesitation points",
+          "Thumb-stopping 3-second visual demonstration hooks preventing scroll-past",
+          "Organic conversation-starter CTAs driving hundreds of saves and shares",
+        ],
+      },
+    },
+    metrics: [
+      {
+        value: "2.8M+",
+        label: {
+          id: "Organic Video Views",
+          en: "Organic Video Views",
+        },
+        sublabel: {
+          id: "Jangkauan Viral Tanpa Budget Iklan",
+          en: "Zero-Ad-Spend Viral Reach",
+        },
+      },
+      {
+        value: "+310%",
+        label: {
+          id: "Pendaftaran Siswa Baru",
+          en: "New Student Enrollment",
+        },
+        sublabel: {
+          id: "Peningkatan Akuisisi Organik",
+          en: "Inbound Organic Inquiries",
+        },
+      },
+      {
+        value: "8.6%",
+        label: {
+          id: "Average Engagement",
+          en: "Average Engagement",
+        },
+        sublabel: {
+          id: "Interaksi Aktif Komunitas",
+          en: "High Retention & Comment Rate",
+        },
+      },
+    ],
     description: {
-      id: "Memimpin perancangan & eksekusi strategi iklan berbayar (Meta Ads & TikTok Ads) serta produksi konten visual/video kreatif untuk klaster perumahan subsidi dan komersil (Avana, Ammaia Ecoforest, Alzafa 3). Menghasilkan ratusan prospek KPR tervalidasi dengan CPR efisien.",
-      en: "Led paid advertising campaigns (Meta Ads & TikTok Ads) and creative visual/video production for subsidized and commercial housing developments (Avana, Ammaia Ecoforest, Alzafa 3), acquiring hundreds of qualified home-buyer leads at scale.",
+      id: "Membangun personal branding dan memproduksi konten digital kreatif di TikTok & Instagram, berkolaborasi dengan berbagai brand & bisnis lokal Palembang untuk mendongkrak brand awareness serta engagement audiens.",
+      en: "Built personal branding and produced creative viral short-form content across TikTok & Instagram, collaborating with local brands and businesses to drive organic reach and high audience engagement.",
     },
     highlights: {
       id: [
-        "Menjalankan kampanye Meta Ads & TikTok Ads terarah untuk klaster perumahan subsidi & komersil",
-        "Memproduksi video house-tour influencer & materi kreatif iklan dengan sudut psikologis pembeli",
-        "Mendatangkan ratusan prospek (leads) KPR WhatsApp tervalidasi dengan CPR sangat optimal",
+        "Serial video viral tutorial menyetir dengan retensi tontonan di atas 70%",
+        "Lonjakan pendaftaran siswa kursus mengemudi secara organik tanpa biaya iklan berlebih",
+        "Kemitraan endorsement sukses dengan brand lokal dan UMKM Palembang",
       ],
       en: [
-        "Executed high-performance Meta & TikTok Ads campaigns for subsidized & commercial housing clusters",
-        "Produced influencer house-tour video content and creative assets with strong conversion hooks",
-        "Acquired hundreds of qualified WhatsApp KPR mortgage leads at industry-leading cost-per-result",
+        "Viral driving tutorial series achieving over 70% average watch retention",
+        "Massive surge in student academy registrations with zero paid ad reliance",
+        "Successful promotional endorsement partnerships with local commercial brands",
       ],
     },
     tags: [
-      "Meta Ads",
-      "TikTok Ads",
-      "Property Marketing",
-      "KPR Lead Gen",
-      "Creative Video Tour",
-      "ROAS Optimization",
+      "TikTok & Reels Viral",
+      "CapCut & Premiere",
+      "Psychological Hooks",
+      "Storytelling",
+      "Organic Acquisition",
     ],
   },
 ];
