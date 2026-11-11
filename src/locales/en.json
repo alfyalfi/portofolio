@@ -20,7 +20,7 @@
   "showcase_section": {
     "eyebrow": "Visual & Production Archive",
     "title": "Creative Archive",
-    "subtitle": "Curated collection of walkthrough video productions, property campaign visuals, viral educational hooks, and verified Meta Ads & GTM data.",
+    "subtitle": "Exploration of video productions, property campaign visuals, viral creative hooks, and verified Meta Ads & Google Tag Manager performance proof.",
     "categories": {
       "all": "All Works",
       "video": "Video & Reels",
@@ -28,8 +28,9 @@
       "viral": "Viral Content",
       "analytics": "Ads & GTM Proof"
     },
-    "play_video": "PLAY VIDEO ▶",
+    "play_video": "PLAY ▶",
     "pause_video": "PAUSE ❚❚",
+    "see_detail": "View Work",
     "close_preview": "CLOSE [×]"
   },
   "works_section": {

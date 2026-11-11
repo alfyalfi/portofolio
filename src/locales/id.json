@@ -20,7 +20,7 @@
   "showcase_section": {
     "eyebrow": "Arsip Visual & Produksi",
     "title": "Galeri Karya",
-    "subtitle": "Kumpulan produksi video walkthrough, poster kampanye properti, konten edukasi viral, hingga bukti performa Meta Ads & Google Tag Manager.",
+    "subtitle": "Eksplorasi karya produksi video, materi kampanye properti, konten kreatif viral, serta bukti autentik performa Meta Ads & Google Tag Manager.",
     "categories": {
       "all": "Semua Karya",
       "video": "Video & Reels",
@@ -28,8 +28,9 @@
       "viral": "Konten Viral",
       "analytics": "Data Iklan & GTM"
     },
-    "play_video": "PUTAR VIDEO ▶",
+    "play_video": "PUTAR ▶",
     "pause_video": "JEDA ❚❚",
+    "see_detail": "Lihat Karya",
     "close_preview": "TUTUP [×]"
   },
   "works_section": {
