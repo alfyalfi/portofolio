@@ -40,7 +40,6 @@ function getLocale(request: NextRequest): AppLocale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const host = (request.headers.get("host") || "").toLowerCase();
 
   // Old /en and /id URLs (bookmarks, backlinks, the previous sitemap) move
   // permanently to the same path without the prefix, keeping their language.
@@ -62,30 +61,18 @@ export function proxy(request: NextRequest) {
     return res;
   }
 
+  // Legacy /studio path redirects to "/" (Alfaristudio Creative Homepage)
+  if (pathname === "/studio" || pathname === "/studio/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    return NextResponse.redirect(url, 301);
+  }
+
+  // Every language lives at the same URL:
+  // - "/" serves /{locale} (Alfaristudio Creative Homepage)
+  // - "/portofolio" serves /{locale}/portofolio (Personal Portfolio of M. Firdaus Alfarizi)
   const locale = getLocale(request);
   const url = request.nextUrl.clone();
-
-  // Direct route alias "/portofolio" always renders the personal portfolio
-  if (pathname === "/portofolio" || pathname === "/portofolio/") {
-    url.pathname = `/${locale}`;
-    return NextResponse.rewrite(url);
-  }
-
-  // Main domain (alfaristudio.my.id / www.alfaristudio.my.id) serves the
-  // Alfaristudio Creative Digital Agency homepage at "/", while
-  // portofolio.alfaristudio.my.id serves the Personal Portfolio at "/".
-  const isMainStudioDomain =
-    host === "alfaristudio.my.id" ||
-    host === "www.alfaristudio.my.id" ||
-    host.startsWith("alfaristudio.my.id:");
-
-  if (isMainStudioDomain && pathname === "/") {
-    url.pathname = `/${locale}/studio`;
-    return NextResponse.rewrite(url);
-  }
-
-  // Every language lives at the same URL: serve the prerendered /{locale}
-  // page without changing the address bar.
   url.pathname = `/${locale}${pathname}`;
 
   return NextResponse.rewrite(url);

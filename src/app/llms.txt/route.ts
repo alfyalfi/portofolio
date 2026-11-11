@@ -1,6 +1,6 @@
 import {
+  getPortfolioUrl,
   getSiteUrl,
-  getStudioSiteUrl,
   socialProfiles,
 } from "@/common/seo-metadata";
 import { expertise } from "@/data/expertise";
@@ -14,16 +14,16 @@ export const dynamic = "force-static";
 
 export function GET() {
   const siteUrl = getSiteUrl();
-  const studioUrl = getStudioSiteUrl();
+  const portfolioUrl = getPortfolioUrl();
 
-  const body = `# M. Firdaus Alfarizi (Alfi) & Alfaristudio Creative
+  const body = `# Alfaristudio Creative & M. Firdaus Alfarizi (Alfi)
 
 > Creative & Marketer, Ads Specialist, and Founder of Alfaristudio Creative based in Palembang, Indonesia. Helps companies scale through data-driven Meta Ads, Google Ads, TikTok Ads, high-converting creative production, and Next.js web engineering.
 
-- Personal Portfolio: ${siteUrl}/
-- Alfaristudio Creative (Digital Services Homepage): ${studioUrl}/
+- Alfaristudio Creative (Digital Services Homepage): ${siteUrl}/
+- Personal Portfolio of M. Firdaus Alfarizi: ${portfolioUrl}
 
-## Alfaristudio Creative — Digital Services (${studioUrl}/)
+## Alfaristudio Creative — Digital Services (${siteUrl}/)
 
 ${studioServices.map((s) => `- [${s.number}] ${s.title.en} (${s.category.en}): ${s.summary.en}`).join("\n")}
 
@@ -31,7 +31,7 @@ ${studioServices.map((s) => `- [${s.number}] ${s.title.en} (${s.category.en}): $
 
 ${careerTimeline.map((item) => `- [${item.period}] ${item.role.en} at ${item.company.en} (${item.category.en}): ${item.summary.en}`).join("\n")}
 
-## Featured Case Studies & Creative Works (${siteUrl}/)
+## Featured Case Studies & Creative Works (${portfolioUrl})
 
 ${works.map((work) => `- [${work.theme.en}] ${work.title}: ${work.tagline.en} | Metrics: ${work.metrics.map((m) => `${m.value} (${m.label.en})`).join(", ")}`).join("\n")}
 

@@ -184,7 +184,7 @@ export default function StudioHomeView({ lang }: { lang: any }) {
 
   return (
     <div ref={rootRef} className="w-full bg-[#0a0a0a] text-white">
-      {/* 1. STUDIO NAVBAR */}
+      {/* 1. STUDIO NAVBAR — Uses Custom Alfaristudio Creative Logo (A✦) */}
       <nav
         aria-label="Alfaristudio Creative Navigation"
         className="absolute top-4 z-50 w-full bg-transparent px-4 md:px-8"
@@ -195,13 +195,13 @@ export default function StudioHomeView({ lang }: { lang: any }) {
             className="group flex items-center gap-3 py-1"
             aria-label="Alfaristudio Creative"
           >
-            <div className="relative size-10 overflow-hidden md:size-11">
+            <div className="relative size-10 overflow-hidden transition-transform duration-300 group-hover:scale-105 md:size-11">
               <Image
-                src="/assets/images/brand-f.png"
+                src="/assets/images/alfaristudio-logo.svg"
                 alt="Alfaristudio Creative"
                 fill
                 sizes="44px"
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
@@ -217,8 +217,8 @@ export default function StudioHomeView({ lang }: { lang: any }) {
 
           <div className="flex items-center gap-3 md:gap-5">
             <a
-              href="https://portofolio.alfaristudio.my.id"
-              className="hidden border-b border-white/30 pb-0.5 text-xs font-medium tracking-[0.18em] text-white/70 uppercase transition-colors hover:border-sky-400 hover:text-white sm:inline-block"
+              href="/portofolio"
+              className="border-b border-white/30 pb-0.5 text-[11px] font-medium tracking-[0.18em] text-white/75 uppercase transition-colors hover:border-sky-400 hover:text-white md:text-xs"
             >
               {isId ? "Portofolio Founder ↗" : "Founder Portfolio ↗"}
             </a>
@@ -317,7 +317,7 @@ export default function StudioHomeView({ lang }: { lang: any }) {
             </a>
 
             <a
-              href="https://portofolio.alfaristudio.my.id"
+              href="/portofolio"
               className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <ArrowButton
@@ -639,13 +639,17 @@ export default function StudioHomeView({ lang }: { lang: any }) {
             </p>
 
             <a
-              href="https://portofolio.alfaristudio.my.id"
+              href="/portofolio"
               className="group mt-8 inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <ArrowButton
                 reversed
                 upRight
-                label="portofolio.alfaristudio.my.id"
+                label={
+                  isId
+                    ? "Buka Portofolio (/portofolio)"
+                    : "Open Portfolio (/portofolio)"
+                }
               />
             </a>
           </div>
@@ -679,7 +683,7 @@ export default function StudioHomeView({ lang }: { lang: any }) {
       </section>
 
       {/* 6. ORIGINAL PINNED QUOTE + CTA + FOOTER */}
-      <section className="relative block min-h-screen w-screen bg-[#0a0a0a] z-10">
+      <section className="relative z-10 block min-h-screen w-screen bg-[#0a0a0a]">
         <QuoteView lang={lang} />
       </section>
       <Footer lang={lang} />

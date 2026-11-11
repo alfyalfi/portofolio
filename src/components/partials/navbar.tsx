@@ -39,10 +39,10 @@ export default function NavigationBar({ lang }: { lang: AppLocale }) {
 
         <div className="flex items-center justify-center text-center gap-3 md:gap-5">
           <a
-            href="https://alfaristudio.my.id"
-            className="hidden sm:inline-block border-b border-white/30 pb-0.5 text-xs font-medium tracking-[0.18em] text-white/70 uppercase transition-colors hover:border-sky-400 hover:text-white"
+            href="/"
+            className="border-b border-white/30 pb-0.5 text-[11px] md:text-xs font-medium tracking-[0.18em] text-white/75 uppercase transition-colors hover:border-sky-400 hover:text-white"
           >
-            {isId ? "Alfaristudio Creative ↗" : "Alfaristudio Agency ↗"}
+            {isId ? "← Alfaristudio Creative" : "← Alfaristudio Home"}
           </a>
 
           {/* Every language shares one URL, so these switch the language in

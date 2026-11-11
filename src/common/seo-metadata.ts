@@ -4,10 +4,9 @@ import { expertise } from "@/data/expertise";
 import { email, socials } from "@/data/socials";
 import { works } from "@/data/works";
 
-const siteUrl = "https://portofolio.alfaristudio.my.id";
-const studioSiteUrl = "https://alfaristudio.my.id";
-/** Every language is served at this one URL (see src/proxy.ts). */
-const pageUrl = `${siteUrl}/`;
+const siteUrl = "https://alfaristudio.my.id";
+/** Homepage is "/" and Personal Portfolio is "/portofolio" (see src/proxy.ts). */
+const pageUrl = `${siteUrl}/portofolio`;
 const siteName = "M. Firdaus Alfarizi";
 const personName = "M. Firdaus Alfarizi";
 const profileImage = `${siteUrl}/assets/images/alfarizi.jpg`;
@@ -18,19 +17,18 @@ const ogImageSmall = "/assets/images/og-image-800-600.png";
 const lastModified = new Date().toISOString();
 
 const ids = {
-  person: `${siteUrl}/#person`,
+  person: `${pageUrl}#person`,
   website: `${siteUrl}/#website`,
-  webpage: `${siteUrl}/#webpage`,
-  works: `${siteUrl}/#works`,
+  webpage: `${pageUrl}#webpage`,
+  works: `${pageUrl}#works`,
 };
 
 const localizedSeo = {
   en: {
     locale: "en_US",
-    // Name first: it is the query this page wins. Keep it under ~60 chars.
     title: "M. Firdaus Alfarizi | Creative & Marketer Portfolio",
     description:
-      "Official portfolio of M. Firdaus Alfarizi (Alfi) at portofolio.alfaristudio.my.id — digital marketer, ads specialist, and content creator in Palembang, Indonesia.",
+      "Official portfolio of M. Firdaus Alfarizi (Alfi) at alfaristudio.my.id/portofolio — digital marketer, ads specialist, and content creator in Palembang, Indonesia.",
     siteDescription:
       "Work experience, case studies, and creative archive of M. Firdaus Alfarizi, founder of Alfaristudio Creative.",
     worksName: "Featured case studies",
@@ -53,7 +51,7 @@ const localizedSeo = {
     locale: "id_ID",
     title: "M. Firdaus Alfarizi | Portofolio Creative & Marketer",
     description:
-      "Portofolio resmi M. Firdaus Alfarizi (Alfi) di portofolio.alfaristudio.my.id — creative marketer, ads specialist, dan founder Alfaristudio Creative asal Palembang.",
+      "Portofolio resmi M. Firdaus Alfarizi (Alfi) di alfaristudio.my.id/portofolio — creative marketer, ads specialist, dan founder Alfaristudio Creative asal Palembang.",
     siteDescription:
       "Perjalanan karir, studi kasus kampanye, dan galeri karya M. Firdaus Alfarizi, ads specialist dan digital marketer di Palembang.",
     worksName: "Studi kasus pilihan",
@@ -91,10 +89,11 @@ export function getSiteUrl() {
   return siteUrl;
 }
 
-export function getStudioSiteUrl() {
-  return studioSiteUrl;
+export function getPortfolioUrl() {
+  return pageUrl;
 }
 
+/** SEO & Browser Icon ("F" logo) for /portofolio */
 export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
   const seo = localizedSeo[lang];
   const otherLocales = locales
@@ -117,15 +116,19 @@ export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
       address: false,
       telephone: false,
     },
-    icons: { icon: "/favicon.ico" },
-    alternates: { canonical: "/" },
+    icons: {
+      icon: [{ url: "/assets/images/brand-f.png", type: "image/png" }],
+      shortcut: "/assets/images/brand-f.png",
+      apple: "/assets/images/brand-f.png",
+    },
+    alternates: { canonical: "/portofolio" },
     openGraph: {
       type: "profile",
       firstName: "M. Firdaus",
       lastName: "Alfarizi",
       locale: seo.locale,
       alternateLocale: otherLocales,
-      url: "/",
+      url: "/portofolio",
       siteName,
       title: seo.title,
       description: seo.description,
@@ -171,6 +174,7 @@ export function buildSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
   };
 }
 
+/** SEO & Custom Studio Browser Icon ("A✦" logo) for "/" (Alfaristudio Creative Homepage) */
 export function buildStudioSeoMetadata({ lang }: { lang: AppLocale }): Metadata {
   const isId = lang === "id";
   const title = isId
@@ -181,7 +185,7 @@ export function buildStudioSeoMetadata({ lang }: { lang: AppLocale }): Metadata 
     : "Alfaristudio Creative (alfaristudio.my.id) is a digital growth studio offering Meta, Google & TikTok Ads management, high-converting video & creative production, web development, and GA4/GTM tracking.";
 
   return {
-    metadataBase: new URL(studioSiteUrl),
+    metadataBase: new URL(siteUrl),
     title,
     description,
     applicationName: "Alfaristudio Creative",
@@ -201,7 +205,11 @@ export function buildStudioSeoMetadata({ lang }: { lang: AppLocale }): Metadata 
     authors: [{ name: personName, url: pageUrl }],
     creator: "Alfaristudio Creative",
     publisher: "Alfaristudio Creative",
-    icons: { icon: "/favicon.ico" },
+    icons: {
+      icon: [{ url: "/assets/images/alfaristudio-logo.svg", type: "image/svg+xml" }],
+      shortcut: "/assets/images/alfaristudio-logo.svg",
+      apple: "/assets/images/alfaristudio-logo.svg",
+    },
     alternates: { canonical: "/" },
     openGraph: {
       type: "website",
@@ -229,11 +237,23 @@ export function buildStudioSeoMetadata({ lang }: { lang: AppLocale }): Metadata 
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    verification: {
+      google:
+        process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+        process.env.GOOGLE_SITE_VERIFICATION,
     },
   };
 }
 
-/** JSON-LD for the portfolio page, as one @graph so the entities can reference each other. */
+/** JSON-LD for the portfolio page (/portofolio), as one @graph so the entities can reference each other. */
 export function getHomeStructuredData(lang: AppLocale) {
   const seo = localizedSeo[lang];
 
@@ -257,7 +277,7 @@ export function getHomeStructuredData(lang: AppLocale) {
         jobTitle: "Creative & Marketer",
         description: seo.description,
         email: `mailto:${email}`,
-        sameAs: [studioSiteUrl, ...socialProfiles],
+        sameAs: [`${siteUrl}/`, ...socialProfiles],
         address: {
           "@type": "PostalAddress",
           addressLocality: "Palembang",
@@ -280,8 +300,8 @@ export function getHomeStructuredData(lang: AppLocale) {
       {
         "@type": "WebSite",
         "@id": ids.website,
-        url: pageUrl,
-        name: siteName,
+        url: `${siteUrl}/`,
+        name: "Alfaristudio Creative",
         description: seo.siteDescription,
         inLanguage: [...locales],
         publisher: { "@id": ids.person },
@@ -316,7 +336,7 @@ export function getHomeStructuredData(lang: AppLocale) {
           position: index + 1,
           item: {
             "@type": "CreativeWork",
-            "@id": `${siteUrl}/#work-${work.title.toLowerCase()}`,
+            "@id": `${pageUrl}#work-${work.title.toLowerCase()}`,
             name: work.title,
             description: work.description[lang],
             url: work.href,
@@ -337,11 +357,11 @@ export function getStudioStructuredData(lang: AppLocale) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": `${studioSiteUrl}/#agency`,
+    "@id": `${siteUrl}/#agency`,
     name: "Alfaristudio Creative",
-    url: `${studioSiteUrl}/`,
-    logo: `${studioSiteUrl}/assets/images/brand-f.png`,
-    image: `${studioSiteUrl}${ogImage}`,
+    url: `${siteUrl}/`,
+    logo: `${siteUrl}/assets/images/alfaristudio-logo.svg`,
+    image: `${siteUrl}${ogImage}`,
     founder: {
       "@type": "Person",
       name: personName,

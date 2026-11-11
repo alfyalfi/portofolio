@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import type { AppLocale } from "@/common/i18n";
-import { buildSeoMetadata, getHomeStructuredData } from "@/common/seo-metadata";
-import Footer from "@/components/partials/footer";
+import {
+  buildStudioSeoMetadata,
+  getStudioStructuredData,
+} from "@/common/seo-metadata";
 import PageClientLayout from "@/components/partials/page-client-layout";
-import Section from "@/components/partials/section";
 import CursorPointer from "@/components/ui/cursor-pointer";
 import IntroAnimation from "@/components/ui/intro-animation";
-
-// Language Dictionary
+import StudioHomeView from "@/components/views/studio-home";
 import getDictionary from "./dictionaries";
 
 export async function generateMetadata(props: {
@@ -16,17 +16,16 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const lang = params.lang as AppLocale;
 
-  return buildSeoMetadata({ lang });
+  return buildStudioSeoMetadata({ lang });
 }
 
-export default async function Page(props: {
+export default async function HomePage(props: {
   params: Promise<{ lang: string }>;
 }) {
   const params = await props.params;
   const lang = params.lang as AppLocale;
   const t = await getDictionary(lang);
-  // "<" is escaped so no string in the data can close the <script> early
-  const structuredData = JSON.stringify(getHomeStructuredData(lang)).replace(
+  const structuredData = JSON.stringify(getStudioStructuredData(lang)).replace(
     /</g,
     "\\u003c",
   );
@@ -38,17 +37,10 @@ export default async function Page(props: {
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
 
-      <IntroAnimation key={lang} />
+      <IntroAnimation key={`studio-${lang}`} />
 
       <PageClientLayout>
-        <Section id="hero" lang={t}></Section>
-        <Section id="about" lang={t}></Section>
-        <Section id="services" lang={t}></Section>
-        <Section id="works" lang={t}></Section>
-        <Section id="expertise" lang={t}></Section>
-        <Section id="showcase" lang={t}></Section>
-        <Section id="quote" lang={t}></Section>
-        <Footer lang={t} />
+        <StudioHomeView lang={t} />
       </PageClientLayout>
 
       <CursorPointer />
