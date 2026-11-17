@@ -302,7 +302,7 @@ export default function StudioHomeView({ lang }: { lang: any }) {
 
           <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
             <a
-              href="https://wa.me/62896954540203?text=Halo%20Alfaristudio%20Creative%2C%20saya%20ingin%20konsultasi%20layanan%20digital%20marketing%20untuk%20bisnis%20saya."
+              href="https://wa.me/6289695454020?text=Halo%20Alfaristudio%20Creative%2C%20saya%20ingin%20konsultasi%20layanan%20digital%20marketing%20untuk%20bisnis%20saya."
               target="_blank"
               rel="noopener noreferrer"
               className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -595,7 +595,7 @@ export default function StudioHomeView({ lang }: { lang: any }) {
                       </div>
 
                       <a
-                        href={`https://wa.me/62896954540203?text=${waText}`}
+                        href={`https://wa.me/6289695454020?text=${waText}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group/btn block focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
