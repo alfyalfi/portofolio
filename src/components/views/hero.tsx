@@ -26,16 +26,17 @@ const displayText = `${bebasNeue.className} block text-end text-[calc((100vw-2re
 
 function ResumeButton({ lang }: { lang: any }) {
   const label = lang.home_section.button_text;
+  const cvUrl =
+    (lang.lang === "en"
+      ? process.env.NEXT_PUBLIC_CV_EN
+      : process.env.NEXT_PUBLIC_CV_ID) ||
+    "/assets/document/Resume - M. Firdaus Alfarizi.pdf";
 
   return (
     <a
-      href={
-        lang.lang === "en"
-          ? process.env.NEXT_PUBLIC_CV_EN
-          : process.env.NEXT_PUBLIC_CV_ID
-      }
+      href={cvUrl}
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       aria-label={`${label} - M. Firdaus Alfarizi (PDF)`}
       className={buttonLink}
     >

@@ -11,6 +11,6 @@ export const socials = [
 export const email = "mfirdausalfarizi15@gmail.com";
 
 export const whatsapp = {
-  number: "+62 821-7615-2196",
-  href: "https://wa.me/6282176152196",
+  number: "+62 896-9545-40203",
+  href: "https://wa.me/62896954540203",
 };
