@@ -33,8 +33,8 @@ const materialItems: ShowcaseItem[] = [
     src: "/assets/videos/reels/HL-GOAT.mp4",
     poster: "/assets/gallery/posters/hl-goat.webp",
     aspect: "portrait",
-    client: "Driving Academy",
-    title: { id: "HL-GOAT — Video Reels", en: "HL-GOAT — Video Reel" },
+    client: "RK Group Property",
+    title: { id: "Kebersamaan Tim RK Group", en: "RK Group Team Reel" },
     tag: { id: "Video Reels", en: "Video Reel" },
   },
   {
@@ -45,7 +45,7 @@ const materialItems: ShowcaseItem[] = [
     poster: "/assets/gallery/posters/alzafa3-tanahkavling.webp",
     aspect: "portrait",
     client: "Alzafa Residence Tahap 3",
-    title: { id: "Tanah Kavling Alzafa 3", en: "Alzafa 3 Land Plots" },
+    title: { id: "Promo Tanah Kavling", en: "Land Plot Promotion" },
     tag: { id: "Video Reels Properti", en: "Property Video Reel" },
   },
   {
@@ -56,7 +56,7 @@ const materialItems: ShowcaseItem[] = [
     poster: "/assets/gallery/posters/alzafa3-tarik.webp",
     aspect: "portrait",
     client: "Alzafa Residence Tahap 3",
-    title: { id: "Tarik Promo Alzafa 3", en: "Alzafa 3 Promo" },
+    title: { id: "Tarik Promo Besar Alzafa 3", en: "Alzafa 3 Big Promotion" },
     tag: { id: "Video Reels Properti", en: "Property Video Reel" },
   },
   {
@@ -67,7 +67,7 @@ const materialItems: ShowcaseItem[] = [
     poster: "/assets/gallery/posters/bir2-modal100rb.webp",
     aspect: "portrait",
     client: "BIR2",
-    title: { id: "BIR2 — Modal 100 Ribu", en: "BIR2 — 100K Down Payment" },
+    title: { id: "Rumah Subsidi Modal 100 Ribu", en: "Affordable Home for Rp100K Down" },
     tag: { id: "Video Reels Properti", en: "Property Video Reel" },
   },
   {

@@ -122,7 +122,8 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
   const [activeCategory, setActiveCategory] =
     useState<ShowcaseCategory>("all");
   const [activeItem, setActiveItem] = useState<ShowcaseItem | null>(null);
-  const [isInlinePlaying, setIsInlinePlaying] = useState(false);
+  const [playingInlineId, setPlayingInlineId] = useState<string | null>(null);
+  const [inlinePlaybackError, setInlinePlaybackError] = useState<string | null>(null);
 
   const filteredItems =
     activeCategory === "all"
@@ -445,13 +446,14 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
       inlineVideoRefs.current.forEach((other) => {
         if (other !== video) other.pause();
       });
+      setInlinePlaybackError(null);
       video
         .play()
-        .then(() => setIsInlinePlaying(true))
-        .catch(() => {});
+        .then(() => setPlayingInlineId(id))
+        .catch(() => setInlinePlaybackError(id));
     } else {
       video.pause();
-      setIsInlinePlaying(false);
+      setPlayingInlineId(null);
     }
   };
 
@@ -595,8 +597,8 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
               >
                 {/* Top Editorial Metadata Bar */}
                 <div className="mb-3 flex items-baseline justify-between text-xs tracking-[0.2em] text-white/40 uppercase">
-                  <span>
-                    {item.client} — {item.tag[locale]}
+                  <span className="truncate pr-3 text-white/65">
+                    {item.title[locale]}
                   </span>
                   <span
                     className={`${bebasNeue.className} text-2xl leading-none text-white/30 transition-colors duration-300 group-hover:text-sky-400 md:text-3xl`}
@@ -644,12 +646,11 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                           preload="none"
                           playsInline
                           loop
-                          onEnded={() => setIsInlinePlaying(false)}
+                          onPlay={() => setPlayingInlineId(item.id)}
+                          onEnded={() => setPlayingInlineId(null)}
                           onPause={() =>
-                            setIsInlinePlaying(
-                              [...inlineVideoRefs.current.values()].some(
-                                (current) => !current.paused,
-                              ),
+                            setPlayingInlineId((current) =>
+                              current === item.id ? null : current,
                             )
                           }
                           className="size-full object-cover scale-105"
@@ -661,10 +662,15 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                             onClick={(event) => toggleInlineVideo(event, item.id)}
                             className="pointer-events-auto cursor-pointer bg-[#0a0a0a]/80 px-3 py-1.5 text-[11px] font-medium tracking-[0.2em] text-white uppercase backdrop-blur-xs transition-colors hover:bg-sky-400 hover:text-[#0a0a0a]"
                           >
-                            {isInlinePlaying
+                            {playingInlineId === item.id
                               ? lang?.showcase_section?.pause_video || "JEDA ❚❚"
                               : lang?.showcase_section?.play_video || "PUTAR ▶"}
                           </button>
+                          {inlinePlaybackError === item.id && (
+                            <span role="status" className="bg-red-950/90 px-2 py-1 text-[10px] text-white">
+                              {locale === "id" ? "Video gagal diputar" : "Video could not play"}
+                            </span>
+                          )}
                         </div>
                       </div>
                     ) : (
@@ -711,7 +717,7 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                         : "mr-[6%] text-right md:mr-0 md:ml-[-8%] md:text-left",
                     )}
                   >
-                    {item.title[locale]}
+                    {item.client}
                   </h3>
 
                   <button
