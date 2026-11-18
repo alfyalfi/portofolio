@@ -1,4 +1,11 @@
-export type ShowcaseCategory = "all" | "video" | "property" | "viral" | "analytics";
+export type ShowcaseCategory =
+  | "all"
+  | "video"
+  | "property"
+  | "viral"
+  | "carousel"
+  | "flyer"
+  | "analytics";
 
 export type ShowcaseItem = {
   id: string;
@@ -18,13 +25,144 @@ export type ShowcaseItem = {
   };
 };
 
+const materialItems: ShowcaseItem[] = [
+  {
+    id: "reel-hl-goat",
+    type: "video",
+    category: "video",
+    src: "/assets/videos/reels/HL-GOAT.mp4",
+    poster: "/assets/gallery/posters/hl-goat.webp",
+    aspect: "portrait",
+    client: "Driving Academy",
+    title: { id: "HL-GOAT — Video Reels", en: "HL-GOAT — Video Reel" },
+    tag: { id: "Video Reels", en: "Video Reel" },
+  },
+  {
+    id: "reel-alzafa3-tanahkavling",
+    type: "video",
+    category: "video",
+    src: "/assets/videos/reels/alzafa3-tanahkavling.mp4",
+    poster: "/assets/gallery/posters/alzafa3.webp",
+    aspect: "portrait",
+    client: "Alzafa Residence Tahap 3",
+    title: { id: "Tanah Kavling Alzafa 3", en: "Alzafa 3 Land Plots" },
+    tag: { id: "Video Reels Properti", en: "Property Video Reel" },
+  },
+  {
+    id: "reel-alzafa3-tarik",
+    type: "video",
+    category: "video",
+    src: "/assets/videos/reels/alzafa3-tarik.mp4",
+    poster: "/assets/gallery/posters/alzafa3.webp",
+    aspect: "portrait",
+    client: "Alzafa Residence Tahap 3",
+    title: { id: "Tarik Promo Alzafa 3", en: "Alzafa 3 Promo" },
+    tag: { id: "Video Reels Properti", en: "Property Video Reel" },
+  },
+  {
+    id: "reel-bir2-modal100rb",
+    type: "video",
+    category: "video",
+    src: "/assets/videos/reels/bir2-modal100rb.mp4",
+    poster: "/assets/gallery/posters/bir2.webp",
+    aspect: "portrait",
+    client: "BIR2",
+    title: { id: "BIR2 — Modal 100 Ribu", en: "BIR2 — 100K Down Payment" },
+    tag: { id: "Video Reels Properti", en: "Property Video Reel" },
+  },
+  {
+    id: "reel-ads-harigini",
+    type: "video",
+    category: "video",
+    src: "/assets/videos/reels/ads-harigini.mp4",
+    poster: "/assets/gallery/posters/ammaia.webp",
+    aspect: "portrait",
+    client: "The Ammaia Hills",
+    title: { id: "Ads Hari Gini", en: "Ads Like This" },
+    tag: { id: "Video Reels Properti", en: "Property Video Reel" },
+  },
+  ...[
+    ["21tahun", "21 Tahun Berkarya", "Creative Campaign"],
+    ["alzafa3-artimerdeka", "Alzafa 3 — Promo Kemerdekaan", "Property Campaign"],
+    ["avana-mannequin", "Avana — Creative Campaign", "Property Campaign"],
+    ["bir4-sogokduit", "BIR4 — Sogok Duit", "Property Campaign"],
+    ["SPAM-LIVE-2", "Spam Live — Campaign Visual", "Content Creative"],
+  ].map(([id, title, tag]) => ({
+    id: `cover-${id.toLowerCase().replaceAll(" ", "-")}`,
+    type: "image" as const,
+    category: id.toLowerCase().includes("spam") ? ("viral" as const) : ("property" as const),
+    src: `/assets/gallery/covers/${id}${id === "SPAM-LIVE-2" ? ".jpg" : ".png"}`,
+    aspect: "portrait" as const,
+    client: id.toLowerCase().includes("bir") ? "BIR Property" : "RK Group Property",
+    title: { id: title, en: title },
+    tag: { id: tag, en: tag },
+  })),
+  ...[
+    ...Array.from({ length: 5 }, (_, index) => ({
+      src: `/assets/gallery/carousel/Alzafa-3/${index + 1}.jpg`,
+      id: `alzafa3-${index + 1}`,
+      client: "Alzafa Residence Tahap 3",
+      title: `Alzafa 3 — Carousel ${index + 1}`,
+    })),
+    ...Array.from({ length: 5 }, (_, index) => ({
+      src: `/assets/gallery/carousel/BIR2/${index + 1}.${index === 3 ? "jpg" : "png"}`,
+      id: `bir2-${index + 1}`,
+      client: "BIR2",
+      title: `BIR2 — Carousel ${index + 1}`,
+    })),
+    ...Array.from({ length: 5 }, (_, index) => ({
+      src: `/assets/gallery/carousel/BIR2/wm (${index + 1}).jpg`,
+      id: `bir2-wm-${index + 1}`,
+      client: "BIR2",
+      title: `BIR2 — Carousel ${index + 1}`,
+    })),
+    ...Array.from({ length: 5 }, (_, index) => ({
+      src: `/assets/gallery/carousel/BIR4/crsl-bir4-${index + 1}.jpg`,
+      id: `bir4-${index + 1}`,
+      client: "BIR4",
+      title: `BIR4 — Carousel ${index + 1}`,
+    })),
+  ].map(({ src, id, client, title }) => ({
+    id: `carousel-${id}`,
+    type: "image" as const,
+    category: "carousel" as const,
+    src,
+    aspect: "portrait" as const,
+    client,
+    title: { id: title, en: title },
+    tag: { id: "Slide Carousel", en: "Carousel Slide" },
+  })),
+  ...[
+    ["adha2026-v1.jpg", "Promo Iduladha 2026 — Versi 1", "RK Group Property"],
+    ["adha2026-v2.jpg", "Promo Iduladha 2026 — Versi 2", "RK Group Property"],
+    ["alzafa-cetak (P).jpg", "Flyer Cetak Alzafa", "Alzafa Residence Tahap 3"],
+    ["Alzafa3-81merdeka.jpg", "Alzafa 3 — Promo Kemerdekaan", "Alzafa Residence Tahap 3"],
+    ["avam-9gift-aug.jpg", "Avana — Promo Gift Agustus", "Avana Hills Palembang"],
+    ["avam-choice-aug-foot-blue.jpg", "Avana — Promo Pilihan Agustus", "Avana Hills Palembang"],
+    ["banner-bir2-belakang (1.75x2).jpg", "BIR2 — Banner Belakang", "BIR2"],
+    ["buat-capcut.jpg", "Materi Promo untuk CapCut", "RK Group Property"],
+    ["flyer-libur-ammaia.jpg", "Informasi Libur Ammaia", "The Ammaia Hills"],
+    ["simple-ads.jpg", "Simple Ads — Property Campaign", "RK Group Property"],
+  ].map(([file, title, client]) => ({
+    id: `flyer-${file.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`,
+    type: "image" as const,
+    category: "flyer" as const,
+    src: `/assets/gallery/flyers/${file}`,
+    aspect: file.includes("banner") ? ("wide" as const) : ("portrait" as const),
+    client,
+    title: { id: title, en: title },
+    tag: { id: "Flyer & Materi Promosi", en: "Flyer & Promotion" },
+  })),
+];
+
 export const showcaseItems: ShowcaseItem[] = [
+  ...materialItems,
   {
     id: "video-walkthrough-avana",
     type: "video",
     category: "video",
     src: "/assets/videos/real-estate-walkthrough.mp4",
-    poster: "/assets/images/cine-avan-100826.png",
+    poster: "/assets/gallery/posters/avana.webp",
     aspect: "portrait",
     client: "RK Group Property",
     title: {

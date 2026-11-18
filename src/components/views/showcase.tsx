@@ -76,6 +76,8 @@ const defaultCategories: Record<
   video: { id: "Video & Reels", en: "Video & Reels" },
   property: { id: "Kampanye Properti", en: "Property Campaigns" },
   viral: { id: "Konten Viral", en: "Viral Content" },
+  carousel: { id: "Carousel", en: "Carousels" },
+  flyer: { id: "Flyer & Promosi", en: "Flyers & Promotions" },
   analytics: { id: "Data Iklan & GTM", en: "Ads & GTM Proof" },
 };
 
@@ -115,7 +117,7 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const ringTriggerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const inlineVideoRef = useRef<HTMLVideoElement>(null);
+  const inlineVideoRefs = useRef(new Map<string, HTMLVideoElement>());
 
   const [activeCategory, setActiveCategory] =
     useState<ShowcaseCategory>("all");
@@ -131,6 +133,8 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
     "all",
     "video",
     "property",
+    "carousel",
+    "flyer",
     "viral",
     "analytics",
   ];
@@ -411,12 +415,8 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
 
   // Pause inline video if category changes or modal opens
   useEffect(() => {
-    if (
-      inlineVideoRef.current &&
-      ((activeCategory !== "all" && activeCategory !== "video") || activeItem)
-    ) {
-      inlineVideoRef.current.pause();
-      setIsInlinePlaying(false);
+    if ((activeCategory !== "all" && activeCategory !== "video") || activeItem) {
+      inlineVideoRefs.current.forEach((video) => video.pause());
     }
   }, [activeCategory, activeItem]);
 
@@ -437,11 +437,14 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
       rollWords(currentTarget, on);
     });
 
-  const toggleInlineVideo = (e: React.MouseEvent) => {
+  const toggleInlineVideo = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    const video = inlineVideoRef.current;
+    const video = inlineVideoRefs.current.get(id);
     if (!video) return;
     if (video.paused) {
+      inlineVideoRefs.current.forEach((other) => {
+        if (other !== video) other.pause();
+      });
       video
         .play()
         .then(() => setIsInlinePlaying(true))
@@ -632,20 +635,30 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                     {item.type === "video" ? (
                       <div data-reveal-zoom className="relative size-full">
                         <video
-                          ref={inlineVideoRef}
+                          ref={(video) => {
+                            if (video) inlineVideoRefs.current.set(item.id, video);
+                            else inlineVideoRefs.current.delete(item.id);
+                          }}
                           src={item.src}
                           poster={item.poster}
                           preload="none"
                           playsInline
                           loop
                           onEnded={() => setIsInlinePlaying(false)}
+                          onPause={() =>
+                            setIsInlinePlaying(
+                              [...inlineVideoRefs.current.values()].some(
+                                (current) => !current.paused,
+                              ),
+                            )
+                          }
                           className="size-full object-cover scale-105"
                         />
                         {/* Inline Play/Pause Trigger */}
                         <div className="pointer-events-none absolute top-4 right-4 z-20 flex items-center gap-3">
                           <button
                             type="button"
-                            onClick={toggleInlineVideo}
+                            onClick={(event) => toggleInlineVideo(event, item.id)}
                             className="pointer-events-auto cursor-pointer bg-[#0a0a0a]/80 px-3 py-1.5 text-[11px] font-medium tracking-[0.2em] text-white uppercase backdrop-blur-xs transition-colors hover:bg-sky-400 hover:text-[#0a0a0a]"
                           >
                             {isInlinePlaying
@@ -669,7 +682,9 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                           }
                           className={cn(
                             "scale-105",
-                            isWide ? "object-contain p-2 md:p-4" : "object-cover",
+                            isWide || item.category === "carousel" || item.category === "flyer"
+                              ? "object-contain p-2 md:p-4"
+                              : "object-cover",
                           )}
                         />
                       </div>
@@ -794,6 +809,7 @@ export default function ShowcaseView({ lang }: ShowcaseViewProps) {
                 controls
                 autoPlay
                 playsInline
+                preload="metadata"
                 className="max-h-[75vh] w-auto max-w-full object-contain"
               />
             ) : (
